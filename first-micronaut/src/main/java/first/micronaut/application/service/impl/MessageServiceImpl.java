@@ -4,7 +4,11 @@ import first.micronaut.application.service.MessageService;
 import first.micronaut.domaine.Message;
 import first.micronaut.domaine.command.CreateMessageCommand;
 import first.micronaut.domaine.repository.MessageRepository;
+import io.micronaut.runtime.event.annotation.EventListener;
+import io.micronaut.scheduling.annotation.Async;
 import io.micronaut.spring.tx.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -15,8 +19,12 @@ import java.util.Optional;
 @Singleton
 class MessageServiceImpl implements MessageService {
 
+    Logger log = LoggerFactory.getLogger(MessageServiceImpl.class.getName());
+
     @Inject
     MessageRepository repository;
+
+
 
     @Transactional(readOnly = true)
     @Override

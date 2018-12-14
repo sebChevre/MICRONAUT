@@ -19,4 +19,11 @@ public class CreateMessageCommand {
     public Message toMessage(){
         return new Message(this.msg);
     }
+
+    @Override
+    public String toString() {
+        return "CreateMessageCommand{" +
+                "msg='" + msg + '\'' +
+                '}';
+    }
 }

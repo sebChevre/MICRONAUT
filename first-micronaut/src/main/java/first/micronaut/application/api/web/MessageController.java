@@ -3,6 +3,7 @@ package first.micronaut.application.api.web;
 import first.micronaut.application.service.MessageService;
 import first.micronaut.domaine.Message;
 import first.micronaut.domaine.command.CreateMessageCommand;
+import io.micronaut.context.event.ApplicationEventPublisher;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
@@ -19,6 +20,9 @@ import java.util.Optional;
 public class MessageController {
 
     Logger log = LoggerFactory.getLogger(MessageController.class.getName());
+
+    @Inject
+    ApplicationEventPublisher eventPublisher;
 
     @Inject
     MessageService service;
@@ -50,6 +54,8 @@ public class MessageController {
     @Post
     public HttpResponse<Message> sauveMessage(@Body CreateMessageCommand command){
         log.info("sauveMessage: {}",command);
+
+        eventPublisher.publishEvent(command);
 
         return HttpResponse.ok(service.sauveMessage(command));
     }
