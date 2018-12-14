@@ -1,14 +1,16 @@
 package first.micronaut.domaine.command;
 
 import first.micronaut.domaine.Message;
+import org.springframework.context.ApplicationEvent;
 
-public class CreateMessageCommand {
+public class CreateMessageCommand extends ApplicationEvent {
 
     private String msg;
 
-    CreateMessageCommand(){}
+    CreateMessageCommand(){super("");}
 
     public CreateMessageCommand(String msg){
+        super("");
         this.msg = msg;
     }
 
