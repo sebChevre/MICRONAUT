@@ -1,29 +1,17 @@
 package first.micronaut.application.api.web;
 
-import com.sun.media.jfxmediaimpl.MediaDisposer;
-import first.micronaut.domaine.Message;
 import first.micronaut.domaine.command.CreateMessageCommand;
-import io.micronaut.context.event.ApplicationEventListener;
-import io.micronaut.discovery.event.ServiceStartedEvent;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.sse.Event;
 import io.micronaut.runtime.event.annotation.EventListener;
 import io.micronaut.scheduling.annotation.Async;
-import io.reactivex.Emitter;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.internal.util.ConnectConsumer;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Observable;
-import java.util.concurrent.TimeUnit;
 
 @Controller("/sse")
 public class EventController {
